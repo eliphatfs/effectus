@@ -1,12 +1,34 @@
-﻿<Window x:Class="Effectus.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Effectus"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<mah:MetroWindow
+    x:Class="Effectus.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Effectus"
+    mc:Ignorable="d"
+    Title="Effectus" Height="450" Width="800"
+    WindowTransitionsEnabled="True">
 
-    </Grid>
-</Window>
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Button>
+                <iconPacks:PackIconModern Kind="Film" />
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+
+    <DockPanel Background="#fafafa">
+
+        <Menu x:Name="menuBar" DockPanel.Dock="Top">
+            <MenuItem Header="_Dummy">
+                <MenuItem Header="D_ummy" FontSize="12" />
+                <MenuItem Header="Du_mmy" FontSize="12" />
+            </MenuItem>
+            <MenuItem Header="_Exit" Click="MenuItemExit_Click"></MenuItem>
+        </Menu>
+        <StackPanel>
+        </StackPanel>
+    </DockPanel>
+</mah:MetroWindow>
