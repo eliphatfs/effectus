@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Effectus"
     mc:Ignorable="d"
-    Title="Effectus" Height="450" Width="800"
+    Title="Effectus" Height="540" Width="960"
     WindowTransitionsEnabled="True">
 
     <mah:MetroWindow.LeftWindowCommands>
@@ -19,7 +19,7 @@
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>
 
-    <DockPanel Background="#fafafa">
+    <DockPanel Background="#f6f6f6">
 
         <Menu x:Name="menuBar" DockPanel.Dock="Top">
             <MenuItem Header="_Dummy">
@@ -29,11 +29,37 @@
             <MenuItem Header="_Exit" Click="MenuItemExit_Click"></MenuItem>
         </Menu>
         <Grid>
-            <Viewbox Stretch="Uniform" StretchDirection="Both">
-                <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
-                    <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
-                </Canvas>
-            </Viewbox>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Viewbox Stretch="Uniform" StretchDirection="Both">
+                    <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
+                        <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.RowSpan="3" Grid.Column="2" Background="#f2f2f2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <WrapPanel Background="#ede8ef">
+                    <iconPacks:PackIconBootstrapIcons Kind="Tools" Foreground="#777" VerticalAlignment="Center" Margin="12,0,0,0" Width="14" Height="14" />
+                    <Label Foreground="#777" FontWeight="Bold">
+                        <TextBlock Padding="0,2" FontSize="13">PROPERTIES</TextBlock>
+                    </Label>
+                </WrapPanel>
+            </Grid>
+            <GridSplitter Grid.RowSpan="3" Grid.Column="1" Margin="-4,0" BorderThickness="4,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Background="#ededf5" />
+            <GridSplitter Grid.Row="1" Margin="0,-4" BorderThickness="0,4" BorderBrush="Transparent" VerticalAlignment="Stretch" Background="#ccc" />
         </Grid>
     </DockPanel>
 </mah:MetroWindow>
