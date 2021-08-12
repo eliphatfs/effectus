@@ -30,8 +30,8 @@
         </Menu>
         <Grid>
             <Viewbox Stretch="Uniform" StretchDirection="Both">
-                <Canvas Background="#eeffff" Width="1280" Height="720">
-                    <Rectangle Fill="#b0a4c1" Canvas.Left="100" Canvas.Top="100" Width="100" Height="100"></Rectangle>
+                <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
+                    <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
                 </Canvas>
             </Viewbox>
         </Grid>
