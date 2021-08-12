@@ -30,14 +30,15 @@
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="1" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="0" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Grid>
                 <Viewbox Stretch="Uniform" StretchDirection="Both">
@@ -46,7 +47,7 @@
                     </Canvas>
                 </Viewbox>
             </Grid>
-            <Grid Grid.RowSpan="3" Grid.Column="2" Background="#f2f2f2">
+            <Grid Grid.RowSpan="4" Grid.Column="2" Background="#f2f2f2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -58,7 +59,27 @@
                     </Label>
                 </WrapPanel>
             </Grid>
-            <GridSplitter Grid.RowSpan="3" Grid.Column="1" Margin="-4,0" BorderThickness="4,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Background="#ededf5" />
+            <Grid Grid.Row="2" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
+                <ListView Grid.Row="1" Background="Transparent">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="BorderBrush" Value="#e9e9e9"></Setter>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+                            <Setter Property="Background" Value="#f6f6f6"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListViewItem>Test</ListViewItem>
+                    <ListViewItem>Test</ListViewItem>
+                    <ListViewItem>Test</ListViewItem>
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.RowSpan="4" Grid.Column="1" Margin="-4,0" BorderThickness="4,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Background="#ededf5" />
             <GridSplitter Grid.Row="1" Margin="0,-4" BorderThickness="0,4" BorderBrush="Transparent" VerticalAlignment="Stretch" Background="#ccc" />
         </Grid>
     </DockPanel>
