@@ -28,7 +28,12 @@
             </MenuItem>
             <MenuItem Header="_Exit" Click="MenuItemExit_Click"></MenuItem>
         </Menu>
-        <StackPanel>
-        </StackPanel>
+        <Grid>
+            <Viewbox Stretch="Uniform" StretchDirection="Both">
+                <Canvas Background="#eeffff" Width="1280" Height="720">
+                    <Rectangle Fill="#b0a4c1" Canvas.Left="100" Canvas.Top="100" Width="100" Height="100"></Rectangle>
+                </Canvas>
+            </Viewbox>
+        </Grid>
     </DockPanel>
 </mah:MetroWindow>
