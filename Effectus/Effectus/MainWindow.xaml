@@ -9,6 +9,7 @@
     xmlns:local="clr-namespace:Effectus"
     mc:Ignorable="d"
     Title="Effectus" Height="540" Width="960"
+    BorderThickness="0"
     WindowTransitionsEnabled="True">
 
     <mah:MetroWindow.LeftWindowCommands>
@@ -21,12 +22,12 @@
 
     <DockPanel Background="#f6f6f6">
 
-        <Menu x:Name="menuBar" DockPanel.Dock="Top">
-            <MenuItem Header="_Dummy">
+        <Menu x:Name="menuBar" DockPanel.Dock="Top" Background="Transparent">
+            <MenuItem Header="_Dummy" Background="Transparent">
                 <MenuItem Header="D_ummy" FontSize="12" />
                 <MenuItem Header="Du_mmy" FontSize="12" />
             </MenuItem>
-            <MenuItem Header="_Exit" Click="MenuItemExit_Click"></MenuItem>
+            <MenuItem Header="_Exit" Click="MenuItemExit_Click" Background="Transparent"></MenuItem>
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
@@ -40,13 +41,13 @@
                 <ColumnDefinition Width="0" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Grid>
-                <Viewbox Stretch="Uniform" StretchDirection="Both">
+            <local:SimpleSubWindow>
+                <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="Both">
                     <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
                         <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
                     </Canvas>
                 </Viewbox>
-            </Grid>
+            </local:SimpleSubWindow>
             <Grid Grid.RowSpan="4" Grid.Column="2" Background="#f2f2f2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -61,10 +62,25 @@
             </Grid>
             <Grid Grid.Row="2" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                    <TextBlock Padding="10">
+                        Long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long text.
+                        <LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall<LineBreak/>
+                        Tall text.
+                    </TextBlock>
+                </ScrollViewer>
+                <!--<Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
                 <ListView Grid.Row="1" Background="Transparent">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
@@ -77,7 +93,7 @@
                     <ListViewItem>Test</ListViewItem>
                     <ListViewItem>Test</ListViewItem>
                     <ListViewItem>Test</ListViewItem>
-                </ListView>
+                </ListView>-->
             </Grid>
             <GridSplitter Grid.RowSpan="4" Grid.Column="1" Margin="-4,0" BorderThickness="4,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Background="#ededf5" />
             <GridSplitter Grid.Row="1" Margin="0,-4" BorderThickness="0,4" BorderBrush="Transparent" VerticalAlignment="Stretch" Background="#ccc" />
