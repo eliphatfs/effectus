@@ -19,11 +19,36 @@ namespace Effectus
     /// <summary>
     /// Interaction logic for SimpleSubWindow.xaml
     /// </summary>
-    public partial class SimpleSubWindow : Grid
+    public partial class SimpleSubWindow
     {
-        public string Title { set; get; }
-        public MahApps.Metro.IconPacks.PackIconBootstrapIconsKind Icon { get; set; }
-        public Color WindowColor { set; get; } = Color.FromRgb(0xed, 0xe8, 0xef);
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register(
+            "Title", typeof(string),
+            typeof(SimpleSubWindow)
+        );
+        public string Title {
+            set => SetValue(TitleProperty, value);
+            get => (string)GetValue(TitleProperty);
+        }
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register(
+            "Icon", typeof(MahApps.Metro.IconPacks.PackIconBootstrapIconsKind),
+            typeof(SimpleSubWindow)
+        );
+        public MahApps.Metro.IconPacks.PackIconBootstrapIconsKind Icon {
+            get => (MahApps.Metro.IconPacks.PackIconBootstrapIconsKind)GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
+        }
+        public static readonly DependencyProperty WindowColorProperty =
+            DependencyProperty.Register(
+            "WindowColor", typeof(Brush),
+            typeof(SimpleSubWindow),
+            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xe6, 0xe7, 0xed)))
+        );
+        public Brush WindowColor {
+            set => SetValue(WindowColorProperty, value);
+            get => (Brush)GetValue(WindowColorProperty);
+        }
         public SimpleSubWindow()
         {
             // Colors: inactive e6e7ed ede8ef active 705697 title d6cfe2
