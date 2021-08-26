@@ -21,7 +21,6 @@
     </mah:MetroWindow.LeftWindowCommands>
 
     <DockPanel Background="#f6f6f6">
-
         <Menu x:Name="menuBar" DockPanel.Dock="Top" Background="Transparent">
             <MenuItem Header="_Dummy" Background="Transparent">
                 <MenuItem Header="D_ummy" FontSize="12" />
@@ -32,7 +31,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="1" />
+                <RowDefinition Height="0" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -41,31 +40,22 @@
                 <ColumnDefinition Width="0" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <local:SimpleSubWindow>
+            <local:SimpleSubWindow Title="Main" Icon="Display">
                 <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="Both">
                     <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
                         <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
                     </Canvas>
                 </Viewbox>
             </local:SimpleSubWindow>
-            <Grid Grid.RowSpan="4" Grid.Column="2" Background="#f2f2f2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Background="#ede8ef">
-                    <iconPacks:PackIconBootstrapIcons Kind="Tools" Foreground="#777" VerticalAlignment="Center" Margin="12,0,0,0" Width="14" Height="14" />
-                    <Label Foreground="#777" FontWeight="Bold">
-                        <TextBlock Padding="0,2" FontSize="13">PROPERTIES</TextBlock>
-                    </Label>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="2" Grid.RowSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                    <TextBlock Padding="10">
+            <local:SimpleSubWindow Grid.RowSpan="4" Grid.Column="2" Title="Properties" Icon="Tools">
+            </local:SimpleSubWindow>
+            <local:SimpleSubWindow Grid.Row="2" Grid.RowSpan="2" Title="Timeline" Icon="Play">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                        <TextBlock Padding="10">
                         Long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long text.
                         <LineBreak/>
                         Tall<LineBreak/>
@@ -78,23 +68,24 @@
                         Tall<LineBreak/>
                         Tall<LineBreak/>
                         Tall text.
-                    </TextBlock>
-                </ScrollViewer>
-                <!--<Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
-                <ListView Grid.Row="1" Background="Transparent">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="BorderBrush" Value="#e9e9e9"></Setter>
-                            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
-                            <Setter Property="Background" Value="#f6f6f6"></Setter>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListViewItem>Test</ListViewItem>
-                    <ListViewItem>Test</ListViewItem>
-                    <ListViewItem>Test</ListViewItem>
-                </ListView>-->
-            </Grid>
+                        </TextBlock>
+                    </ScrollViewer>
+                    <!--<Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
+                        <ListView Grid.Row="1" Background="Transparent">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MahApps.Styles.ListViewItem}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="BorderBrush" Value="#e9e9e9"></Setter>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+                                    <Setter Property="Background" Value="#f6f6f6"></Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListViewItem>Test</ListViewItem>
+                            <ListViewItem>Test</ListViewItem>
+                            <ListViewItem>Test</ListViewItem>
+                        </ListView>-->
+                </Grid>
+            </local:SimpleSubWindow>
             <GridSplitter Grid.RowSpan="4" Grid.Column="1" Margin="-4,0" BorderThickness="4,0" BorderBrush="Transparent" HorizontalAlignment="Stretch" Background="#ededf5" />
             <GridSplitter Grid.Row="1" Margin="0,-4" BorderThickness="0,4" BorderBrush="Transparent" VerticalAlignment="Stretch" Background="#ccc" />
         </Grid>
