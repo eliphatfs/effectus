@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31529.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "EffectusReunion (Package)", "EffectusReunion\EffectusReunion (Package)\EffectusReunion (Package).wapproj", "{A43544D5-2749-49F0-9433-D2085BB95890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectusReunion", "EffectusReunion\EffectusReunion\EffectusReunion.csproj", "{689ACF2B-C9A8-4099-8488-C0CAA6EAD652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EffectusReunion", "EffectusReunion\EffectusReunion\EffectusReunion.csproj", "{689ACF2B-C9A8-4099-8488-C0CAA6EAD652}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0691B33F-8C67-4B07-A250-FC4FCCFF256E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
