@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Documents;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace EffectusReunion
 {
@@ -25,7 +16,8 @@ namespace EffectusReunion
             typeof(SimpleSubWindow),
             new PropertyMetadata("")
         );
-        public string Title {
+        public string Title
+        {
             set => SetValue(TitleProperty, value);
             get => (string)GetValue(TitleProperty);
         }
@@ -35,7 +27,8 @@ namespace EffectusReunion
             typeof(SimpleSubWindow),
             new PropertyMetadata(Symbol.Page)
         );
-        public Symbol Icon {
+        public Symbol Icon
+        {
             get => (Symbol)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
         }
@@ -45,7 +38,8 @@ namespace EffectusReunion
             typeof(SimpleSubWindow),
             new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0xff, 0xe6, 0xe7, 0xed)))
         );
-        public Brush WindowColor {
+        public Brush WindowColor
+        {
             set => SetValue(WindowColorProperty, value);
             get => (Brush)GetValue(WindowColorProperty);
         }
