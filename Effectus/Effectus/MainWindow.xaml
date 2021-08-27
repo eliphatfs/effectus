@@ -43,6 +43,8 @@
             <local:SimpleSubWindow Title="Main" Icon="Display">
                 <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="Both">
                     <Canvas Background="#eeffff" Width="1280" Height="720" ClipToBounds="True">
+                        <MediaElement x:Name="testVideo1" Canvas.Bottom="0" Canvas.Left="0" Width="640" Height="360" Stretch="Fill" StretchDirection="Both" ScrubbingEnabled="True"></MediaElement>
+                        <MediaElement x:Name="testVideo2" Canvas.Right="0" Canvas.Top="0" Width="640" Height="360" Stretch="Fill" StretchDirection="Both" ScrubbingEnabled="True"></MediaElement>
                         <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
                     </Canvas>
                 </Viewbox>
@@ -55,20 +57,28 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                        <TextBlock Padding="10">
-                        Long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long text.
-                        <LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall<LineBreak/>
-                        Tall text.
-                        </TextBlock>
+                        <WrapPanel Orientation="Vertical">
+                            <WrapPanel Orientation="Horizontal" Margin="8">
+                                <Button Style="{DynamicResource MahApps.Styles.Button.Flat}" Click="Play_Click">
+                                    Play
+                                </Button>
+                                <Label></Label>
+                                <Button Style="{DynamicResource MahApps.Styles.Button.Flat}" Click="RandomJump_Click">
+                                    Random Jump
+                                </Button>
+                                <Label></Label>
+                                <Button Style="{DynamicResource MahApps.Styles.Button.Flat}" Click="Pause_Click">
+                                    Pause
+                                </Button>
+                                <Label></Label>
+                                <Button Style="{DynamicResource MahApps.Styles.Button.Flat}" Click="Step_Click">
+                                    Step
+                                </Button>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" Margin="8">
+                                <Label Name="videoTimesLabel"></Label>
+                            </WrapPanel>
+                        </WrapPanel>
                     </ScrollViewer>
                     <!--<Slider Style="{DynamicResource MahApps.Styles.Slider.Flat}" x:Name="progressSlider" VerticalAlignment="Top" Margin="10"></Slider>
                         <ListView Grid.Row="1" Background="Transparent">
