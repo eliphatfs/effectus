@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Windows.UI;
+using System.Runtime.InteropServices.WindowsRuntime;
 
-namespace Effectus
+namespace EffectusReunion
 {
     /// <summary>
     /// Interaction logic for SimpleSubWindow.xaml
@@ -24,7 +22,8 @@ namespace Effectus
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
             "Title", typeof(string),
-            typeof(SimpleSubWindow)
+            typeof(SimpleSubWindow),
+            new PropertyMetadata("")
         );
         public string Title {
             set => SetValue(TitleProperty, value);
@@ -32,29 +31,27 @@ namespace Effectus
         }
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(
-            "Icon", typeof(MahApps.Metro.IconPacks.PackIconBootstrapIconsKind),
-            typeof(SimpleSubWindow)
+            "Icon", typeof(Symbol),
+            typeof(SimpleSubWindow),
+            new PropertyMetadata(Symbol.Page)
         );
-        public MahApps.Metro.IconPacks.PackIconBootstrapIconsKind Icon {
-            get => (MahApps.Metro.IconPacks.PackIconBootstrapIconsKind)GetValue(IconProperty);
+        public Symbol Icon {
+            get => (Symbol)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
         }
         public static readonly DependencyProperty WindowColorProperty =
             DependencyProperty.Register(
             "WindowColor", typeof(Brush),
             typeof(SimpleSubWindow),
-            new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xe6, 0xe7, 0xed)))
+            new PropertyMetadata(new SolidColorBrush(Color.FromArgb(0xff, 0xe6, 0xe7, 0xed)))
         );
         public Brush WindowColor {
             set => SetValue(WindowColorProperty, value);
             get => (Brush)GetValue(WindowColorProperty);
         }
-        static SimpleSubWindow()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(SimpleSubWindow), new FrameworkPropertyMetadata(typeof(SimpleSubWindow)));
-        }
         public SimpleSubWindow() : base()
         {
+            DefaultStyleKey = typeof(SimpleSubWindow);
             // Colors: inactive e6e7ed ede8ef active 705697 title d6cfe2
         }
     }
