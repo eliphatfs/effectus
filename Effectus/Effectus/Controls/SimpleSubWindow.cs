@@ -19,7 +19,7 @@ namespace Effectus
     /// <summary>
     /// Interaction logic for SimpleSubWindow.xaml
     /// </summary>
-    public partial class SimpleSubWindow
+    public partial class SimpleSubWindow : ContentControl
     {
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
@@ -49,10 +49,13 @@ namespace Effectus
             set => SetValue(WindowColorProperty, value);
             get => (Brush)GetValue(WindowColorProperty);
         }
-        public SimpleSubWindow()
+        static SimpleSubWindow()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SimpleSubWindow), new FrameworkPropertyMetadata(typeof(SimpleSubWindow)));
+        }
+        public SimpleSubWindow() : base()
         {
             // Colors: inactive e6e7ed ede8ef active 705697 title d6cfe2
-            InitializeComponent();
         }
     }
 }
