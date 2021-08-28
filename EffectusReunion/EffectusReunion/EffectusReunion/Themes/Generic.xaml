@@ -4,5 +4,6 @@
     xmlns:local="using:EffectusReunion">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Controls/SimpleSubWindow.Generic.xaml" />
+        <ResourceDictionary Source="/Controls/ScalableSymbolIcon.Generic.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

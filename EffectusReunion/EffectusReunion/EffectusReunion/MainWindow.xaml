@@ -22,6 +22,9 @@
         <local:SimpleSubWindow Title="Scene" Icon="PreviewLink">
             <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="Both">
                 <Canvas Background="#eeffff" Width="1280" Height="720">
+                    <Canvas.Clip>
+                        <RectangleGeometry Rect="0 0 1280 720"></RectangleGeometry>
+                    </Canvas.Clip>
                     <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
                 </Canvas>
             </Viewbox>
@@ -35,17 +38,17 @@
                 </Grid.RowDefinitions>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Vertical">
-                        <RelativePanel Margin="8">
-                            <Button Click="Play_Click">
+                        <RelativePanel Margin="6">
+                            <Button Click="Play_Click" Margin="2" Name="playButton">
                                 Play
                             </Button>
-                            <Button Click="RandomJump_Click">
+                            <Button Click="RandomJump_Click" Margin="2" Name="randomJumpButton" RelativePanel.RightOf="playButton">
                                 Random Jump
                             </Button>
-                            <Button Click="Pause_Click">
+                            <Button Click="Pause_Click" Margin="2" Name="pauseButton" RelativePanel.RightOf="randomJumpButton">
                                 Pause
                             </Button>
-                            <Button Click="Step_Click">
+                            <Button Click="Step_Click" Margin="2" Name="stepButton" RelativePanel.RightOf="pauseButton">
                                 Step
                             </Button>
                         </RelativePanel>
