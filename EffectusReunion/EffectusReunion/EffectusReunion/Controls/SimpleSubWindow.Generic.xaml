@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="using:EffectusReunion">
     <Style TargetType="local:SimpleSubWindow">
         <Setter Property="Template">
@@ -14,7 +13,7 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Background="{TemplateBinding WindowColor}">
-                                <SymbolIcon Symbol="{TemplateBinding Icon}" Foreground="#777" VerticalAlignment="Center" Margin="9,0,0,0" Width="12" Height="12" />
+                                <local:ScalableSymbolIcon Symbol="{TemplateBinding Icon}" Foreground="#777" VerticalAlignment="Center" Margin="9,0,0,0" Width="12" Height="12" />
                                 <TextBlock Foreground="#777" FontSize="12" Padding="4" Text="{TemplateBinding Title}" />
                             </StackPanel>
                             <Grid Grid.Row="1" x:Name="subContainer">
