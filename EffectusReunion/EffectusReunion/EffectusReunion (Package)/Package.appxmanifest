@@ -8,8 +8,8 @@
 
   <Identity
     Name="39cbdfcc-a5d9-49a8-9c6d-cd780cc62b24"
-    Publisher="CN=v-ruoxishi"
-    Version="1.0.0.0" />
+    Publisher="CN=effectus"
+    Version="1.0.1.0" />
 
   <Properties>
     <DisplayName>EffectusReunion (Package)</DisplayName>
