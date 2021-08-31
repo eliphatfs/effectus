@@ -12,6 +12,7 @@ namespace EffectusReunion.VirtualTransport
     /// </summary>
     public class VirtualTransportControl
     {
+        // TODO: Differentiate Preview/Rendering?
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
         public MediaTimelineController MediaTimelineController
         {
