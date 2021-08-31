@@ -42,8 +42,8 @@ namespace EffectusReunion
             if (controller == null)
             {
                 controller = new MediaTimelineController();
-                video1.SetMediaPlayer(new Windows.Media.Playback.MediaPlayer());
-                video2.SetMediaPlayer(new Windows.Media.Playback.MediaPlayer());
+                video1.SetMediaPlayer(new());
+                video2.SetMediaPlayer(new());
                 video1.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Metal_Wind_Chimes_at_Sunset.mp4"));
                 video2.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Metal_Wind_Chimes_at_Sunset.mp4"));
                 video1.MediaPlayer.CommandManager.IsEnabled = false;
