@@ -15,8 +15,21 @@ namespace EffectusReunion.VirtualMediaObjectModel
     /// </summary>
     public abstract class VirtualMediaNode
     {
-        public abstract FrameworkElement CreateVisualNode();
-        public abstract IAudioNode CreateAudioNode(AudioGraph graph);
+        public FrameworkElement VisualNode
+        {
+            get; protected set;
+        }
+        public IAudioNode AudioNode
+        {
+            get; protected set;
+        }
+        public virtual void Initialize(AudioGraph graph)
+        {
+            VisualNode = CreateVisualNode();
+            AudioNode = CreateAudioNode(graph);
+        }
+        protected abstract FrameworkElement CreateVisualNode();
+        protected abstract IAudioNode CreateAudioNode(AudioGraph graph);
         public virtual void Update(VirtualTransportControl transport)
         {
         }
