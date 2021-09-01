@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EffectusReunion.VirtualTransport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,11 @@ namespace EffectusReunion.VirtualMediaObjectModel
         {
             _children.Add(node);
             VisualNode.Children.Add(node.VisualNode);
+        }
+        public override void Update(VirtualTransportControl transport)
+        {
+            foreach (var child in Children)
+                child.Update(transport);
         }
     }
 }

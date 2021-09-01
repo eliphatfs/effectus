@@ -20,5 +20,7 @@ namespace EffectusReunion.VirtualMediaObjectModel
         {
             get;
         }
+
+        public void Update(VirtualTransport.VirtualTransportControl transport);
     }
 }
