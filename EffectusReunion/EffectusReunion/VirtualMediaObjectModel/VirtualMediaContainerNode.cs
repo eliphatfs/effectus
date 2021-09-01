@@ -25,6 +25,7 @@ namespace EffectusReunion.VirtualMediaObjectModel
         protected override Canvas CreateVisualNode()
         {
             var canvas = new Canvas();
+            canvas.Name = Guid.NewGuid().ToString("N");
             foreach (var child in Children)
                 canvas.Children.Add(child.VisualNode);
             return canvas;

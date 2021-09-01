@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Media.Audio;
+using Windows.Storage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,52 +27,59 @@ namespace EffectusReunion
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        MediaTimelineController controller;
         public MainPage()
         {
-            this.InitializeComponent();
-            CompositionTarget.Rendering += CompositionTarget_Rendered;
-        }
-
-        private void CompositionTarget_Rendered(object sender, object e)
-        {
-            timeLabels.Text = $"{video1.MediaPlayer.PlaybackSession.Position.TotalMilliseconds}\n{video2.MediaPlayer.PlaybackSession.Position.TotalMilliseconds}";
+            InitializeComponent();
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            if (controller == null)
-            {
-                controller = new MediaTimelineController();
-                video1.SetMediaPlayer(new());
-                video2.SetMediaPlayer(new());
-                video1.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Metal_Wind_Chimes_at_Sunset.mp4"));
-                video2.MediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Metal_Wind_Chimes_at_Sunset.mp4"));
-                video1.MediaPlayer.CommandManager.IsEnabled = false;
-                video2.MediaPlayer.CommandManager.IsEnabled = false;
-                video1.MediaPlayer.TimelineController = controller;
-                video2.MediaPlayer.TimelineController = controller;
-                controller.Start();
-            }
-            else
-                controller.Resume();
         }
 
         private void RandomJump_Click(object sender, RoutedEventArgs e)
         {
-            controller.Position = TimeSpan.FromSeconds(new Random().NextDouble() * 15);
         }
 
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
-            controller.Pause();
         }
 
         private void Step_Click(object sender, RoutedEventArgs e)
         {
-            var old = controller.Position;
-            controller.Position = TimeSpan.Zero;
-            controller.Position = old + TimeSpan.FromMilliseconds(10);
+        }
+
+        public class TestTextNode : VirtualMediaObjectModel.VirtualMediaTextNode
+        {
+            public override void Update(VirtualTransport.VirtualTransportControl transport)
+            {
+                base.Update(transport);
+                VisualNode.Text = transport.Time.ToString();
+            }
+        }
+
+        private async void Render_Click(object sender, RoutedEventArgs e)
+        {
+            var testNode = new VirtualMediaObjectModel.VirtualMediaContainerNode();
+            var ag = await AudioGraph.CreateAsync(new AudioGraphSettings(Windows.Media.Render.AudioRenderCategory.Media));
+            var text = new TestTextNode();
+            text.Initialize(ag.Graph);
+            testNode.AppendChild(text);
+            testNode.Initialize(ag.Graph);
+            testNode.VisualNode.Width = 1280;
+            testNode.VisualNode.Height = 720;
+            var renderer = new VirtualTransport.VirtualTransportVideoRender(testNode);
+            renderer.OnProgress += Renderer_OnProgress;
+            await renderer.RenderToFile(await DownloadsFolder.CreateFileAsync("test.mp4"));
+        }
+
+        private void Renderer_OnProgress(float obj)
+        {
+            _ = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                progress.Minimum = 0;
+                progress.Maximum = 1;
+                progress.Value = obj;
+            });
         }
     }
 }

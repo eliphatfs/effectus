@@ -22,13 +22,10 @@
         </Grid.ColumnDefinitions>
         <local:SimpleSubWindow Title="Scene" Icon="PreviewLink">
             <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="Both">
-                <Canvas Background="#eeffff" Width="1280" Height="720">
+                <Canvas Width="1280" Height="720">
                     <Canvas.Clip>
                         <RectangleGeometry Rect="0 0 1280 720"></RectangleGeometry>
                     </Canvas.Clip>
-                    <Rectangle Fill="#b0a4c1" Canvas.Left="-50" Canvas.Top="100" Width="100" Height="100"></Rectangle>
-                    <MediaPlayerElement x:Name="video1" Canvas.Left="640" Canvas.Top="0" Width="640" Height="360" AutoPlay="False" AreTransportControlsEnabled="False" />
-                    <MediaPlayerElement x:Name="video2" Canvas.Left="0" Canvas.Top="360" Width="640" Height="360" AutoPlay="False" AreTransportControlsEnabled="False" />
                 </Canvas>
             </Viewbox>
         </local:SimpleSubWindow>
@@ -54,7 +51,11 @@
                             <Button Click="Step_Click" Margin="2" Name="stepButton" RelativePanel.RightOf="pauseButton">
                                 Step
                             </Button>
+                            <Button Click="Render_Click" Margin="2" Name="renderButton" RelativePanel.RightOf="stepButton">
+                                Test Render
+                            </Button>
                             <TextBlock Margin="2" RelativePanel.Below="playButton" Name="timeLabels"></TextBlock>
+                            <ProgressBar Margin="2" RelativePanel.Below="timeLabels" Name="progress" IsIndeterminate="False"></ProgressBar>
                         </RelativePanel>
                     </StackPanel>
                 </ScrollViewer>

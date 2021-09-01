@@ -17,7 +17,10 @@ namespace EffectusReunion.VirtualMediaObjectModel
 
         protected override TextBlock CreateVisualNode()
         {
-            return new TextBlock();
+            return new TextBlock
+            {
+                Name = "N" + Guid.NewGuid().ToString("N")
+            };
         }
     }
 }
