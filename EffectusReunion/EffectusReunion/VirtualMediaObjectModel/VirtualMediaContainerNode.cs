@@ -32,7 +32,7 @@ namespace EffectusReunion.VirtualMediaObjectModel
         public virtual void AppendChild(IBasicVirtualNode node)
         {
             _children.Add(node);
-            VisualNode.Children.Add(node.VisualNode);
+            // TODO: Update Logic Organization
         }
         public override void Update(VirtualTransportControl transport)
         {
