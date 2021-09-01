@@ -13,13 +13,15 @@ namespace EffectusReunion.VirtualMediaObjectModel
     /// Base class for all descriptors and logical nodes.
     /// Produces audio and video entity nodes.
     /// </summary>
-    public abstract class VirtualMediaNode
+    public abstract class VirtualMediaNode<VisualT, AudioT> : IVirtualMediaNode<VisualT, AudioT>
+        where VisualT: FrameworkElement
+        where AudioT : IAudioInputNode
     {
-        public FrameworkElement VisualNode
+        public VisualT VisualNode
         {
             get; protected set;
         }
-        public IAudioNode AudioNode
+        public AudioT AudioNode
         {
             get; protected set;
         }
@@ -28,8 +30,8 @@ namespace EffectusReunion.VirtualMediaObjectModel
             VisualNode = CreateVisualNode();
             AudioNode = CreateAudioNode(graph);
         }
-        protected abstract FrameworkElement CreateVisualNode();
-        protected abstract IAudioNode CreateAudioNode(AudioGraph graph);
+        protected abstract VisualT CreateVisualNode();
+        protected abstract AudioT CreateAudioNode(AudioGraph graph);
         public virtual void Update(VirtualTransportControl transport)
         {
         }
