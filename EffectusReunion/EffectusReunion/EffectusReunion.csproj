@@ -128,7 +128,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VirtualMediaObjectModel\IVirtualMediaNode.cs" />
+    <Compile Include="VirtualMediaObjectModel\VirtualMediaContainerNode.cs" />
     <Compile Include="VirtualMediaObjectModel\VirtualMediaNode.cs" />
+    <Compile Include="VirtualMediaObjectModel\VirtualMediaTextNode.cs" />
     <Compile Include="VirtualTransport\VirtualTransportControl.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +140,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Metal_Wind_Chimes_at_Sunset.mp4" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
