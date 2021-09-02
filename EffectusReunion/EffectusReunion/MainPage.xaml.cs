@@ -74,7 +74,7 @@ namespace EffectusReunion
         {
             _ = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                progress.Value = obj * 100;
+                progress.Value = obj;
             });
         }
     }
