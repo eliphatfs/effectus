@@ -55,7 +55,8 @@
                                 Test Render
                             </Button>
                             <TextBlock Margin="2" RelativePanel.Below="playButton" Name="timeLabels"></TextBlock>
-                            <ProgressBar Margin="2" RelativePanel.Below="timeLabels" Name="progress" IsIndeterminate="False"></ProgressBar>
+                            <ProgressBar Margin="2" Width="200" RelativePanel.Below="timeLabels" Name="progress" IsIndeterminate="False">
+                            </ProgressBar>
                         </RelativePanel>
                     </StackPanel>
                 </ScrollViewer>

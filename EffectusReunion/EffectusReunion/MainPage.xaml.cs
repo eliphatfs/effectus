@@ -65,8 +65,6 @@ namespace EffectusReunion
             text.Initialize(ag.Graph);
             testNode.AppendChild(text);
             testNode.Initialize(ag.Graph);
-            testNode.VisualNode.Width = 1280;
-            testNode.VisualNode.Height = 720;
             var renderer = new VirtualTransport.VirtualTransportVideoRender(testNode);
             renderer.OnProgress += Renderer_OnProgress;
             await renderer.RenderToFile(await DownloadsFolder.CreateFileAsync("test.mp4"));
@@ -76,9 +74,7 @@ namespace EffectusReunion
         {
             _ = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                progress.Minimum = 0;
-                progress.Maximum = 1;
-                progress.Value = obj;
+                progress.Value = obj * 100;
             });
         }
     }
