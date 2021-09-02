@@ -1,4 +1,5 @@
-﻿using EffectusReunion.VirtualTransport;
+﻿using EffectusReunion.RenderingLayer;
+using EffectusReunion.VirtualTransport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ using Windows.UI.Xaml.Controls;
 
 namespace EffectusReunion.VirtualMediaObjectModel
 {
-    using IBasicVirtualNode = IVirtualMediaNode<FrameworkElement, IAudioInputNode>;
-    public class VirtualMediaContainerNode : VirtualMediaNode<Canvas, AudioSubmixNode>
+    using IBasicVirtualNode = IVirtualMediaNode<Renderer, IAudioInputNode>;
+    public class VirtualMediaContainerNode : VirtualMediaNode<Renderer, AudioSubmixNode>
     {
         private readonly List<IBasicVirtualNode> _children = new();
         public IReadOnlyList<IBasicVirtualNode> Children => _children;
@@ -22,13 +23,12 @@ namespace EffectusReunion.VirtualMediaObjectModel
                 child.AudioNode.AddOutgoingConnection(mix);
             return mix;
         }
-        protected override Canvas CreateVisualNode()
+        protected override Renderer CreateVisualNode()
         {
-            var canvas = new Canvas();
-            canvas.Name = Guid.NewGuid().ToString("N");
+            Renderer renderer = new();
             foreach (var child in Children)
-                canvas.Children.Add(child.VisualNode);
-            return canvas;
+                child.VisualNode.Parent = renderer;
+            return renderer;
         }
         public virtual void AppendChild(IBasicVirtualNode node)
         {

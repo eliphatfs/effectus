@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Media.Audio;
 using Windows.UI.Xaml;
 using EffectusReunion.VirtualTransport;
+using EffectusReunion.RenderingLayer;
 
 namespace EffectusReunion.VirtualMediaObjectModel
 {
@@ -14,7 +15,7 @@ namespace EffectusReunion.VirtualMediaObjectModel
     /// Produces audio and video entity nodes.
     /// </summary>
     public abstract class VirtualMediaNode<VisualT, AudioT> : IVirtualMediaNode<VisualT, AudioT>
-        where VisualT: FrameworkElement
+        where VisualT: Renderer
         where AudioT : IAudioInputNode
     {
         public VisualT VisualNode
