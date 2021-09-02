@@ -5,16 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using EffectusReunion.VirtualMediaObjectModel;
 using Windows.Storage;
-using Windows.Media;
 using Windows.Media.MediaProperties;
 using Windows.Media.Core;
 using Windows.Media.Transcoding;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.Graphics.DirectX.Direct3D11;
+using Windows.UI;
 using Microsoft.Graphics.Canvas;
-using Windows.Storage.Streams;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Graphics.DirectX;
+using Windows.Media.Audio;
+using EffectusReunion.RenderingLayer;
 
 namespace EffectusReunion.VirtualTransport
 {
@@ -30,15 +27,13 @@ namespace EffectusReunion.VirtualTransport
             RootNode = rootNode;
         }
         public event Action<float> OnProgress;
-        public VirtualTransportControl TransportControl = new VirtualTransportControl();
+        public VirtualTransportControl TransportControl = new();
         public int frame;
-        public RenderTargetBitmap RenderTargetBitmap;
         public async Task RenderToFile(IStorageFile file)
         {
             VideoEncodingProperties sourceProp = VideoEncodingProperties.CreateUncompressed(MediaEncodingSubtypes.Bgra8, 1280, 720);
             sourceProp.FrameRate.Numerator = 60;
             sourceProp.FrameRate.Denominator = 1;
-            RenderTargetBitmap = new();
             sourceProp.Bitrate = 60 * 1280 * 720 * 4;
             MediaStreamSource mediaStreamSource = new(new VideoStreamDescriptor(sourceProp));
             mediaStreamSource.SampleRequested += MediaStreamSource_SampleRequested;
@@ -57,18 +52,24 @@ namespace EffectusReunion.VirtualTransport
         {
             frame++;
             TransportControl.Time = TimeSpan.FromSeconds(frame / 60.0);
-            IBuffer buffer = null;
-            RootNode.VisualNode.Dispatcher.RunAsync(
-                Windows.UI.Core.CoreDispatcherPriority.High,
-                async () =>
-                {
-                    RootNode.Update(TransportControl);
-                    await RenderTargetBitmap.RenderAsync(RootNode.VisualNode);
-                    buffer = await RenderTargetBitmap.GetPixelsAsync();
-                }
-            ).AsTask().Wait();
-            using (var cbp = CanvasBitmap.CreateFromBytes(CanvasDevice.GetSharedDevice(), buffer, 1280, 720, DirectXPixelFormat.B8G8R8A8UIntNormalized))
-                args.Request.Sample = MediaStreamSample.CreateFromDirect3D11Surface(cbp, TransportControl.Time);
+            if (TransportControl.Time > TimeSpan.FromSeconds(50))
+                return;
+            RootNode.Update(TransportControl);
+            using CanvasRenderTarget renderer = new(CanvasDevice.GetSharedDevice(), 1280, 720, 96);
+            using CanvasDrawingSession session = renderer.CreateDrawingSession();
+            session.Clear(Color.FromArgb(255, 251, 251, 254));
+            RenderAll(session, RootNode);
+            args.Request.Sample = MediaStreamSample.CreateFromDirect3D11Surface(renderer, TransportControl.Time);
+        }
+
+        private void RenderAll(CanvasDrawingSession s, IVirtualMediaNode<Renderer, IAudioInputNode> root)
+        {
+            if (root is VirtualMediaContainerNode c)
+            {
+                foreach (var child in c.Children)
+                    RenderAll(s, child);
+            }
+            root.VisualNode.Render(s);
         }
     }
 }
