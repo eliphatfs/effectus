@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Media.Audio;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -48,26 +49,14 @@ namespace EffectusReunion
         {
         }
 
-        public class TestTextNode : VirtualMediaObjectModel.VirtualMediaTextNode
-        {
-            public override void Update(VirtualTransport.VirtualTransportControl transport)
-            {
-                base.Update(transport);
-                VisualNode.Text = transport.Time.ToString();
-            }
-        }
-
         private async void Render_Click(object sender, RoutedEventArgs e)
         {
-            var testNode = new VirtualMediaObjectModel.VirtualMediaContainerNode();
-            var ag = await AudioGraph.CreateAsync(new AudioGraphSettings(Windows.Media.Render.AudioRenderCategory.Media));
-            var text = new TestTextNode();
-            text.Initialize(ag.Graph);
-            testNode.AppendChild(text);
-            testNode.Initialize(ag.Graph);
-            var renderer = new VirtualTransport.VirtualTransportVideoRender(testNode);
-            renderer.OnProgress += Renderer_OnProgress;
-            await renderer.RenderToFile(await DownloadsFolder.CreateFileAsync("test.mp4"));
+            var picker = new FileOpenPicker();
+            picker.FileTypeFilter.Add(".mp4");
+            var ag = await AudioGraph.CreateAsync(new(Windows.Media.Render.AudioRenderCategory.Media));
+            var af = await ag.Graph.CreateFileInputNodeAsync(await picker.PickSingleFileAsync());
+            // var media = MediaSource.CreateFromStorageFile(await picker.PickSingleFileAsync());
+            await System.Threading.Tasks.Task.CompletedTask;
         }
 
         private void Renderer_OnProgress(float obj)
