@@ -129,6 +129,7 @@
     </Compile>
     <Compile Include="MediaEntityTree\MediaEntityException.cs" />
     <Compile Include="MediaEntityTree\MediaLoaderNode.cs" />
+    <Compile Include="MediaEntityTree\MediaTextNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MediaEntityTree\MediaContainerNode.cs" />
     <Compile Include="MediaEntityTree\IMediaEntityNode.cs" />
