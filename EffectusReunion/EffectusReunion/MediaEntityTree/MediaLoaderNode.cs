@@ -12,6 +12,7 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.Media.Render;
 using Windows.Storage;
+using Windows.Media;
 
 namespace EffectusReunion.MediaEntityTree
 {
@@ -39,6 +40,7 @@ namespace EffectusReunion.MediaEntityTree
             var agr = await AudioGraph.CreateAsync(new(AudioRenderCategory.Media));
             if (agr.Status != AudioGraphCreationStatus.Success)
                 throw new MediaEntityException(agr.Status.ToString(), agr.ExtendedError);
+            agr.Graph.Stop();
             node.audioSubgraph = agr.Graph;
             var finr = await node.audioSubgraph.CreateFileInputNodeAsync(file);
             if (finr.Status != AudioFileNodeCreationStatus.Success)
@@ -48,8 +50,37 @@ namespace EffectusReunion.MediaEntityTree
             node.audioLoader.AddOutgoingConnection(node.audioReader);
             node.videoLoader = new();
             node.videoLoader.Source = MediaSource.CreateFromStorageFile(file);
+            node.videoLoader.IsVideoFrameServerEnabled = true;
+            node.audioSubgraph.QuantumStarted += node.AudioSubgraph_QuantumStarted;
+            node.videoLoader.VideoFrameAvailable += node.VideoLoader_VideoFrameAvailable;
+            node.videoLoader.PlaybackSession.PositionChanged += PlaybackSession_PositionChanged;
             return node;
         }
+
+        private static void PlaybackSession_PositionChanged(MediaPlaybackSession sender, object args)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected TaskCompletionSource<AudioFrame> audioDispatcher = new();
+        private void VideoLoader_VideoFrameAvailable(MediaPlayer sender, object args)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AudioSubgraph_QuantumStarted(AudioGraph sender, object args)
+        {
+            if (!audioDispatcher.Task.IsCompleted)
+            {
+                var frame = audioReader.GetFrame();
+                if (frame.Duration.HasValue && frame.Duration.Value > TimeSpan.Zero)
+                {
+                    audioDispatcher.SetResult(frame);
+                }
+            }
+
+        }
+
         public void Render(TransportControl transport, CanvasDrawingSession canvas, AudioFrameInputNode audio)
         {
             // canvas.DrawImage(null, LocalRenderRect);
