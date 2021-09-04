@@ -14,5 +14,6 @@ namespace EffectusReunion.MediaTransportSystem
     {
         // TODO: Differentiate Preview/Rendering?
         public TimeSpan Time { get; set; } = TimeSpan.Zero;
+        public bool IsPlaying { get; set; } = false;
     }
 }
