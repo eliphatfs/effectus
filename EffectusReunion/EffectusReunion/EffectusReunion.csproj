@@ -128,6 +128,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MediaEntityTree\MediaEntityException.cs" />
+    <Compile Include="MediaEntityTree\MediaImageNode.cs" />
     <Compile Include="MediaEntityTree\MediaLoaderNode.cs" />
     <Compile Include="MediaEntityTree\MediaTextNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
