@@ -54,6 +54,7 @@ namespace EffectusReunion.MediaEntityTree
             node.audioSubgraph.QuantumStarted += node.AudioSubgraph_QuantumStarted;
             node.videoLoader.VideoFrameAvailable += node.VideoLoader_VideoFrameAvailable;
             node.videoLoader.PlaybackSession.PositionChanged += node.PlaybackSession_PositionChanged;
+            node.videoLoader.IsMuted = true;
             return node;
         }
 
